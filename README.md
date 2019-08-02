@@ -17,4 +17,4 @@ db:
 
 While `snhu_fixtures.R` contains the meat of the implementation, `snhu_plumber.R` is that script that needs to execute in order to run the service.
 
-As expected, right now the service runs but does effectively nothing.  Stay tuned for more.
+Currently, the instance logs various events when they occur.  The current events being logged are `message`, `channel_created`, `reaction_added`, `team_join`, and `file_shared`.

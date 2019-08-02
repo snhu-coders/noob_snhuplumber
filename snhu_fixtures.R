@@ -8,6 +8,25 @@
 # team_join
 # reaction_added
 
+
+
+# This function logs individual events to the db in the events table that is specified
+# in the config.
+
+logEventToDb <- function(event) {
+  dbWriteTable(
+    con,
+    config$tables$events,
+    data.frame(
+      EventId = UUIDgenerate(),
+      EventType = eventType[1, event$type],
+      EventTime = as.POSIXct(as.numeric(event$event_ts), origin = "1970-01-01")
+    ),
+    append = TRUE
+  )
+}
+
+
 #' This is our intake function
 #' @param challenge The challenge value from Slack, if provided
 #' @param event The event recieved from Slack, if provided
@@ -19,7 +38,8 @@ function(challenge=NULL, event=NULL){
     
     return (challenge)
   }
-  else {
-    print(event$type)
+  
+  if (!is.null(event)) {
+    logEventToDb(event)
   }
 }
