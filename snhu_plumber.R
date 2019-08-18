@@ -38,4 +38,4 @@ con <- dbConnect(
 instance <- plumb("snhu_fixtures.R")
 
 # Start the instance
-instance$run(port=3000)
+instance$run(port=443)
