@@ -18,9 +18,9 @@ logEventToDb <- function(event) {
     con,
     config$tables$events,
     data.frame(
-      EventId = UUIDgenerate(),
-      EventType = eventType[1, event$type],
-      EventTime = as.POSIXct(as.numeric(event$event_ts), origin = "1970-01-01")
+      event_id= UUIDgenerate(),
+      event_type = eventType[1, event$type],
+      event_time = as.POSIXct(as.numeric(event$event_ts), origin = "1970-01-01")
     ),
     append = TRUE
   )
@@ -43,3 +43,25 @@ function(challenge=NULL, event=NULL){
     logEventToDb(event)
   }
 }
+
+#' This is the /spoiler interaction function
+#' @param ... The payload received from the /spoiler request
+#' @serializer unboxedJSON
+#' @post /slack/spoiler
+function(...) {
+    	# Args that we will probably use here:
+    	# text, response_url
+
+	args <- list(...)
+
+    	print(url_decode(args$text))
+    	return(list(text="Your spoiler request is completed."))
+}
+
+
+
+
+
+
+
+

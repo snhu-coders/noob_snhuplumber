@@ -6,6 +6,7 @@ library(yaml)
 library(uuid)
 library(DBI)
 library(data.table)
+library(urltools)
 
 # Load our config here
 
@@ -38,4 +39,4 @@ con <- dbConnect(
 instance <- plumb("snhu_fixtures.R")
 
 # Start the instance
-instance$run(port=443)
+instance$run(host="0.0.0.0", port=8000)
