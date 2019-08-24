@@ -7,6 +7,8 @@ library(uuid)
 library(DBI)
 library(data.table)
 library(urltools)
+library(httr)
+library(jsonlite)
 
 # Load our config here
 
@@ -23,7 +25,6 @@ eventType <- data.frame(
   file_shared = "File Shared",
   stringsAsFactors = FALSE
 )
-
 
 # Establish the connection to the database with the supplied information
 con <- dbConnect(
